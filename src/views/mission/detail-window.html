@@ -13,7 +13,7 @@
             <h4 class="col-md-12">Flight Details</h4>
             <div class="col-md-12">
                 <div class="col col-sm-3 vehicle-type">
-                    <img ng-src="{{record.userAvatarImage}}?s=40&d=mm" class="img-rounded">
+                    <img ng-show="record.userAvatarImage" ng-src="{{record.userAvatarImage}}?s=40&d=mm" class="img-rounded">
                 </div>
                 <!-- <div class="col col-sm-3 avatar">
                     <img src="http://placehold.it/40x40">
@@ -27,10 +27,10 @@
         </div>
 
         <div class="row mission-details">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 <div class="row">
-                    <input ng-hide="auth.isAnonymous()" class="col-sm-12 mission-location" type="text" ng-model="record.summaryText" ng-change="controller.submit()"/>
-                    <div id="mission-detail-islive" class="col col-sm-6">
+                    <input ng-hide="auth.isAnonymous()" class="col-xs-12 mission-location" type="text" ng-model="record.summaryText" ng-change="controller.submit()"/>
+                    <div id="mission-detail-islive" class="col col-xs-6">
                         <h5>Flight connection</h5>
                         <div class="" ng-if="record.isLive">
                             <i class="glyphicon glyphicon-refresh"></i> Live
@@ -39,25 +39,25 @@
                             <i class="glyphicon glyphicon-ok-circle"></i> Flight ended
                         </div>
                     </div>
-                    <div class="col col-sm-6">
+                    <div class="col col-xs-6">
                         <h5>Max Altitude</h5>
                         <div class="">
                             {{record.maxAlt | number }} <span class="small">m</span>
                         </div>
                     </div>
-                    <div class="col col-sm-6">
+                    <div class="col col-xs-6">
                         <h5>Max Groundspeed</h5>
                         <div class="">
                             {{record.maxGroundspeed | number }} <span class="small">m/s</span>
                         </div>
                     </div>
-                    <div class="col col-sm-6">
+                    <div class="col col-xs-6">
                         <h5>Max Airspeed</h5>
                         <div class="">
                             {{record.maxAirspeed | number }} <span class="small">m/s</span>
                         </div>
                     </div>
-                    <div class="col col-sm-12">
+                    <div ng-show="record.softwareVersion" class="col col-xs-12">
                         <h5>Software version</h5>
                         <div class="">
                             {{record.softwareVersion}}
@@ -82,6 +82,7 @@
             <div class="col-md-12">
                 <div class="row downloads">
                     <div class="col-sm-12">
+                        <br>
                         <!-- FIXME - find a way to tunnel this through angular so we can attach our app key -->
                         <ul class="list-unstyled">
                             <li>
@@ -103,25 +104,27 @@
 
             <div class="col-sm-12">
                 <div class="row social">
-                    <div class="col-sm-12">
-                        <h5>Share:</h5>
-                        <span class="list-inline">
+
+                    <div class="col col-xs-4">
                             <div class="fb-share-button social-button" data-type="button"></div>
                             <!-- <li class="facebook">
                                 <a href="#"><img src="/images/fb-share.jpg"></a>
                             </li> -->
+                    </div>
 
+                    <div class="col col-xs-4">
                             <!-- <g:plus action="share"></g:plus> -->
                             <div class="g-plus social-button" data-action="share" data-annotation="none"></div>
                             <!-- <li class="google-plus">
                                 <a href="#"><img src="/images/google-plus-share.jpg"></a>
                             </li> -->
+                    </div>
 
+                    <div class="col col-xs-4">
                             <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="droneshare" data-count="none"></a>
                             <!-- <li class="twitter">
                                 <a href="#"><img src="/images/twitter-share.jpg"></a>
                             </li> -->
-                        </span>
                     </div>
                 </div>
             </div>
