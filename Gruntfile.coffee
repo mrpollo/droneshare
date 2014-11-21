@@ -233,6 +233,8 @@ module.exports = (grunt) ->
         noColor: false
       dev:
         configFile: 'protractor.conf.coffee'
+        options:
+          debug: grunt.option('debug-protractor')
       test_e2e:
         options:
           configFile: 'protractor.saucelabs.conf.coffee'
@@ -413,6 +415,44 @@ module.exports = (grunt) ->
             'highcharts-ng': 'libs/highcharts-ng.js'
         ]
         require: '<%= shimmer.dev.require %>'
+      test:
+        cwd: '.temp/scripts'
+        src: [
+          '!libs/angular-mocks.{coffee,js}'
+          '**/*.{coffee,js}'
+          '!libs/html5shiv-printshiv.{coffee,js}'
+          '!libs/json3.min.{coffee,js}'
+          '!libs/require.{coffee,js}'
+          '!libs/jasmine-jquery.js'
+        ]
+        order: [
+          'libs/spin.js'
+          'libs/ladda.js'
+          'custom/atmosphere.js'
+          'libs/jquery.js'
+          'libs/jquery.flot.js'
+          'libs/jquery.flot.time.js'
+          'libs/angular-file-upload-shim.min.js'
+          'libs/angular.min.js'
+          'libs/mapbox.js'
+          'NGAPP':
+            'ngMockE2E': 'libs/angular-mocks.js'
+            'ngProgressLite': 'libs/ngprogress-lite.js'
+            'ngAnimate': 'libs/angular-animate.min.js'
+            'ngRoute': 'libs/angular-route.min.js'
+            'leaflet-directive': 'custom/angular-leaflet-directive.js'
+            'ngAtmosphere': 'custom/angular-atmosphere.js'
+            'angulartics': 'libs/angulartics.min.js'
+            'angulartics.google.analytics': 'libs/angulartics-ga.min.js'
+            'ui.bootstrap': 'libs/ui-bootstrap-tpls-0.11.0.min.js'
+            'angular-flot': 'libs/angular-flot.js'
+            'ngSocial': 'libs/angular-social.js'
+            'angularFileUpload': 'libs/angular-file-upload.min.js'
+            'infinite-scroll': 'libs/ng-infinite-scroll.js'
+            'ngLaddaBootstrap': 'libs/ng-ladda-bootstrap.js'
+            'highcharts-ng': 'libs/highcharts-ng.js'
+        ]
+        require: 'NGBOOTSTRAP'
 
     # Compiles underscore expressions
     #
@@ -661,6 +701,16 @@ module.exports = (grunt) ->
   ]
 
   grunt.registerTask 'integration-tests:dev', [
+    'clean:working'
+    'coffeelint'
+    'copy:app'
+    'ngTemplateCache'
+    'shimmer:test'
+    'coffee:app'
+    'less'
+    'template:indexDev'
+    'copy:dev'
+
     'connect:test'
     'protractor_webdriver'
     'protractor:dev'

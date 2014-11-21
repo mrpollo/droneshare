@@ -1,5 +1,4 @@
 describe 'header', ->
-
   beforeEach ->
     browser.get('index.html')
 

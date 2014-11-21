@@ -58,6 +58,7 @@
     "grunt-contrib-jasmine": "^0.6.5",
     "grunt-protractor-runner": "^1.1.4",
     "grunt-protractor-webdriver": "^0.1.9",
+    "http-backend-proxy": "^1.4.1",
     "karma-coffee-preprocessor": "^0.2.1",
     "karma-jasmine": "^0.2.2",
     "karma-phantomjs-launcher": "^0.1.4",
